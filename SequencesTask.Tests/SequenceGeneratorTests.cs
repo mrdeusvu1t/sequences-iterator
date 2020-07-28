@@ -86,7 +86,11 @@ namespace SequencesTask.Tests
         [TestCase(-1)]
         [TestCase(-234)]
         public void GetFibonacciNumbers_LengthOfSequenceLessThanOne_ThrowArgumentException(int count)
-            => Assert.Throws<ArgumentException>(() => SequenceGenerator.GetFibonacciNumbers(count),
+            => Assert.Throws<ArgumentException>(() =>
+                {
+                    var sequence = SequenceGenerator.GetFibonacciNumbers(count);
+                    sequence.GetEnumerator().MoveNext();
+                },
                 message: "Method throws ArgumentException in case length of the sequence is less than 1.");
 
         [TestCaseSource(nameof(PrimeNumbersTestCases))]
@@ -108,7 +112,11 @@ namespace SequencesTask.Tests
         [TestCase(-1)]
         [TestCase(-90)]
         public void GetPrimeNumbers_LengthOfSequenceLessThanOne_ThrowArgumentException(int count)
-            => Assert.Throws<ArgumentException>(() => SequenceGenerator.GetPrimeNumbers(count),
+            => Assert.Throws<ArgumentException>(() =>
+                {
+                    var sequence = SequenceGenerator.GetPrimeNumbers(count); ;
+                    sequence.GetEnumerator().MoveNext();
+                },
                 message: "Method throws ArgumentException in case length of the sequence is less than 1.");
     }
 }
